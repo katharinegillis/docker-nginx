@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  IMAGE_NAME: registry.ops.katiecordescodes.com/nginx
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+
+      - name: Log into Private Container Registry
+        run: echo "${{ secrets.REGISTRY_PASS }}" | docker login https://registry.ops.katiecordescodes.com -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin
+
+      - name: Push image
+        run: docker push $IMAGE_NAME
