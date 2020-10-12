@@ -1,5 +1,7 @@
 FROM nginx:1.18-alpine
 
+COPY nginx.conf /etc/nginx/nginx.conf
+
 WORKDIR /var/www/html
 
 RUN chown -R nginx:nginx /var/www/html && chmod -R 755 /var/www/html && \
