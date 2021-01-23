@@ -1,4 +1,4 @@
-FROM nginx:1.18-alpine
+FROM nginx:mainline-alpine
 
 COPY nginx.conf /etc/nginx/nginx.conf
 
