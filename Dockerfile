@@ -12,3 +12,5 @@ RUN touch /var/run/nginx.pid && \
         chown -R nginx:nginx /var/run/nginx.pid
 
 USER nginx
+
+EXPOSE 8080
